@@ -1,0 +1,27 @@
+class Question17
+{
+	public static void main(String[] arge)
+	{
+		
+		for(int i=1;i<=5;i++)
+		{
+			int num =1;
+			for(int j=1;j<=i;j++)	
+			{
+				if (i == j)
+				{
+					System.out.print(num);
+					num+=2;
+				}
+				else
+				{
+					System.out.print(num+"*");
+					num+=2;
+				}
+			}
+			System.out.println();
+		}
+
+	}
+	
+}
