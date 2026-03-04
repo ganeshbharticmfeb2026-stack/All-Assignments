@@ -1,0 +1,165 @@
+CPP Assignment 02 – Theory Answers
+
+PART 1: Initialization vs Assignment
+
+1)  Why must initialization happen before assignment?
+
+Initialization must happen first because class data members are created
+before the constructor body runs. When the constructor body starts
+executing, the members already exist. So if we write something like:
+
+    x = a;
+
+that is assignment, not initialization.
+
+Using an initializer list like:
+
+    Test(int a) : x(a) { }
+
+directly initializes the variable when it is created, which is better
+and more efficient.
+
+2)  When is initialization preferred?
+
+Initialization is preferred:
+
+-   When the class has const data members
+-   When the class has reference members
+-   When performance is important
+-   When initializing objects like string or other complex types
+
+------------------------------------------------------------------------
+
+PART 2: Reference as Alias
+
+3)  How does a reference act as an alias?
+
+A reference is simply another name for an existing variable. It does not
+create a new copy. It refers to the same memory location.
+
+Example:
+
+    int a = 10;
+    int &ref = a;
+
+Both a and ref point to the same memory address. Changing ref changes a.
+
+4)  How does this affect swapByReference()?
+
+In a function like:
+
+    void swapByReference(int &a, int &b)
+
+no copies of variables are created. The parameters directly refer to the
+original variables. So when swapping happens, the original values are
+changed.
+
+------------------------------------------------------------------------
+
+PART 3: Pointer vs Reference
+
+5)  Two differences between pointer and reference:
+
+-   A pointer can be NULL, but a reference cannot.
+-   A pointer can be changed to point to another address, but a
+    reference cannot be changed after initialization.
+
+6)  Why can references not be reseated?
+
+A reference is permanently bound to the variable at the time it is
+initialized. If we write:
+
+    int a = 5, b = 10;
+    int &r = a;
+    r = b;
+
+This does NOT make r refer to b. It only copies the value of b into a.
+The reference still refers to a.
+
+7)  Why can references not be NULL?
+
+A reference must always refer to a valid variable at the time of
+creation. So we must initialize it immediately.
+
+------------------------------------------------------------------------
+
+PART 4: malloc vs new
+
+8)  Why are constructors not called with malloc()?
+
+malloc() only allocates raw memory. It does not call the constructor of
+a class. So if we use malloc for objects, the object is not properly
+constructed.
+
+9)  Why is new preferred in C++?
+
+The new operator:
+
+-   Calls the constructor
+-   Is type safe
+-   Does not require casting
+-   Allows initialization
+
+Example:
+
+    Student *s = new Student();
+
+Here the constructor runs automatically.
+
+10) Difference in return types:
+
+-   malloc returns void*
+-   new returns the correct object type
+
+11) Why can malloc not initialize complex types?
+
+Complex types like classes require constructors to properly initialize
+their data. Since malloc does not call constructors, it cannot properly
+initialize such objects.
+
+------------------------------------------------------------------------
+
+PART 5: Default Constructor
+
+12) When does the compiler generate a default constructor?
+
+If no constructor is defined in the class, the compiler automatically
+creates a default constructor.
+
+13) When does the compiler NOT generate one?
+
+If we define any constructor ourselves, the compiler will not generate a
+default constructor automatically.
+
+14) Can constructors be overloaded?
+
+Yes, constructors can be overloaded as long as they have different
+parameter lists.
+
+------------------------------------------------------------------------
+
+PART 6: const Members
+
+15) Why must const members be initialized in the initializer list?
+
+A const variable cannot be assigned a value after it is created. So it
+must be initialized at the time of creation using an initializer list.
+
+16) What happens if we assign inside the constructor body?
+
+If we try to assign a value to a const member inside the constructor
+body, the compiler will give an error because const members are
+read-only.
+
+17) Why is the initializer list faster?
+
+If we assign inside the constructor body, the process is:
+
+1)  Member is default constructed
+2)  Then it is assigned a new value
+
+With an initializer list, the member is directly initialized with the
+correct value. This avoids the extra step and is more efficient,
+especially for objects like string.
+
+------------------------------------------------------------------------
