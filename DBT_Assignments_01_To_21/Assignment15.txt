@@ -1,0 +1,19 @@
+1)Assume there is a table called Multicust, with all of the same column definitions
+as Salespeople. Write a command that inserts all salespeople with more than one
+customer into this table.
+
+create table multicust like salespeople;
+insert into multicust 
+select s.* from salespeople s join customers c on s.snum = c.snum
+group by s.snum, s.sname, s.city, s.comm
+having count(c.cnum) > 1;
+
+2) Write a command that deletes all customers with no current orders.
+
+delete from customers where cnum != any (select cnum from orders);
+
+3) Write a command that increases by twenty percent the commissions of all
+salespeople with total orders above Rs. 3,000.
+
+update salespeople set comm = comm + 0.2 where snum = 
+(select snum from orders where amt > 3000);

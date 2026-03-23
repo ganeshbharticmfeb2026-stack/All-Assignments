@@ -1,0 +1,12 @@
+1) Write a query that produces all pairs of salespeople who are living in the same
+city. Exclude combinations of salespeople with themselves as well as duplicate
+rows with the order reversed.
+
+	
+	select * from salespeople a ,salespeople b where a.city = b.city and a.snum <b.snum; 
+
+
+2) Write a query that produces the names and cities of all customers with the same
+rating as Hoffman.
+
+	select a.cname ,a.city ,a.rating from customers a,customers b where a.cname = b.cname and a.cname = 'hoffman';

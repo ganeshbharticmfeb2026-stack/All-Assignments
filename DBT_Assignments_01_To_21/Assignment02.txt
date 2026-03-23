@@ -1,0 +1,13 @@
+1) Which field of the Customers table is the primary key?
+	-this customers table customers number is primary key because of this unique.
+ 
+2) What is the 4th column of the Customers table?
+	-In this customers table 4th column name is rating they show to how much rating point show there.
+
+3) What is another word for row? For column?
+	- row also called as record and tuples.
+	- column also called as fields and attribute.
+
+4) Why isn’t it possible to see the first five rows of a table?
+
+	-In a relational database table, rows are not stored in a guaranteed order unless you specify one.
